@@ -4,12 +4,12 @@ const jsonist = require('jsonist')
 const PORT = process.env.PORT = process.env.PORT || require('get-PORT-sync')()
 const server = require('./server')
 
-const urlBase = `http://localhost:${PORT}`
+const urlBase = `http://localhost:${PORT}`;
+const urlBase64 = Buffer.from(urlBase).toString('base64');
 
 tape('should respond hello', (t) => {
-  jsonist.get(urlBase, (err, body) => {
+  jsonist.get(urlBase64, (err, body) => {
     if (err) t.error(err)
-
     t.equal(body.msg, 'hello')
     t.end()
   })
